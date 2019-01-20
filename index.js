@@ -41,26 +41,16 @@ function create(win, options) {
 			type: 'separator'
 		}];
 
-		if (props.mediaType === 'image') {
+		if (options.showSaveImageAs && props.mediaType === 'image') {
 			menuTpl = [{
 				type: 'separator'
-			}, {
-				id: 'save',
-				label: 'Save Image',
+			},{
+				id: 'saveImageAs',
+				label: 'Save Image As…',
 				click(item, win) {
-					download(win, props.srcURL);
+					download(win, props.srcURL, {saveAs: true});
 				}
 			}];
-
-			if (options.showSaveImageAs) {
-				menuTpl.push({
-					id: 'saveImageAs',
-					label: 'Save Image As…',
-					click(item, win) {
-						download(win, props.srcURL, {saveAs: true});
-					}
-				});
-			}
 
 			menuTpl.push({
 				type: 'separator'
